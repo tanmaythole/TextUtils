@@ -1,8 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 
 
-function Navbar({title}) {
+function Navbar({title, toggle, btnText}) {
+    
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,10 +25,10 @@ function Navbar({title}) {
                         <a className="nav-link" href="/">Contact</a>
                     </li>
                     </ul>
-                    <form className="d-flex">
-                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" onClick={toggle} id="flexSwitchCheckDefault" />
+                        <label htmlFor="flexSwitchCheckDefault" className="text-light">{btnText}</label>
+                    </div>
                 </div>
                 </div>
             </nav>

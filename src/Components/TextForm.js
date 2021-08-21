@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 
-function TextForm() {
+function TextForm(props) {
     const [text, setText] = useState("")
     const [output, setOutput] = useState("")
     const [uppercase, setUppercase] = useState(false)
     const [punc, setPunc] = useState(false)
 
+    
     let PerformOperations = (e)=>{
         e.preventDefault();
         let NewText = text;
@@ -18,12 +19,32 @@ function TextForm() {
         setOutput(NewText);
     }
 
+    let ClearText = (e) => {
+        e.preventDefault();
+        setText("");
+        setOutput("");
+    }
+
     return (
         <>
             <form id="1">
                 <div className="mb-3">
                     <label htmlFor="text" className="form-label">Enter Text</label>
-                    <textarea className="form-control" value={text} onChange={(e)=>setText(e.target.value)} id="text" rows="5"></textarea>
+                    <textarea 
+                        className="form-control" 
+                        value={text} 
+                        style={
+                            {
+                                backgroundColor: props.mode==="dark"?"#333333":"#ffffff", 
+                                color: props.mode==="light"?"#333333":"#ffffff"
+                            }
+                        } 
+                        onChange={(e)=>setText(e.target.value)} 
+                        id="text" 
+                        rows="5"
+                    >
+
+                    </textarea>
                 </div>
                 <div className="d-flex">
                     <div className="form-check mx-2">
@@ -40,7 +61,11 @@ function TextForm() {
                     </div>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <button className="btn btn-success my-3" onClick={PerformOperations}>Convert</button>
+                    <div>
+                        <button className="btn btn-success my-3 mx-1" onClick={PerformOperations}>Convert</button>
+                        <button className="btn btn-danger my-3 mx-1" onClick={ClearText}>Clear Text</button>
+                    </div>
+
                     <div className="d-flex">
                         {text.split(" ").length} Word and {text.length} Characters
                     </div>
