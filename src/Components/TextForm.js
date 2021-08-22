@@ -72,7 +72,7 @@ function TextForm(props) {
                     </div>
 
                     <div className="d-flex">
-                        {text.split(" ").length} Word and {text.length} Characters
+                        {text.split(" ").filter(x => x==="").length ? text.split(" ").length-1 : text.split(" ").length} Word and {text.length} Characters
                     </div>
                 </div>
             </form>
