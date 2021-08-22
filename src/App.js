@@ -2,14 +2,22 @@ import { useState } from 'react';
 import './App.css';
 import Navbar from './Components/Navbar';
 import TextForm from './Components/TextForm';
+import Alert from './Components/Alert';
 
 function App() {
-  // const [myStyle, setMyStyle] = useState({
-  //   color: '#000000',
-  //   backgroundColor: '#ffffff'
-  // });
   const [mode, setMode] = useState("light");
   const [btnText, setBtnText] = useState("Enable Dark Mode");
+  const [alert, setAlert] = useState(null)
+
+  const showAlert = (message, type) =>{
+    setAlert({
+      msg: message,
+      type: type
+    });
+    setTimeout(()=>{
+      setAlert(null);
+    }, 1500);
+  }
 
   const toggleMode = () => {
     if (mode==='light') {
@@ -24,27 +32,14 @@ function App() {
       document.body.style.color = '#000000';
       setBtnText("Enable Light Mode");
     }
-      // if(myStyle.color === '#000000'){
-      //     setMyStyle({
-      //         color: '#ffffff',
-      //         backgroundColor: '#333333'
-      //     });
-      //     setBtnText("Enable Light Mode");
-      // }
-      // else{
-      //     setMyStyle({
-      //         color: '#000000',
-      //         backgroundColor: '#ffffff'
-      //     });
-      //     setBtnText("Enable Dark Mode");
-      // }
   }
 
   return (
     <div>
       <Navbar title="TextUtils" toggle={toggleMode} btnText={btnText} />
+      <Alert alert={alert} />
       <div className="container my-3">
-        <TextForm mode={mode} />
+        <TextForm mode={mode} showAlert={showAlert} />
       </div>
     </div>
     );

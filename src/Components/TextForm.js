@@ -5,6 +5,7 @@ function TextForm(props) {
     const [output, setOutput] = useState("")
     const [uppercase, setUppercase] = useState(false)
     const [punc, setPunc] = useState(false)
+    const [outputBox, setOutputBox] = useState(false)
 
     
     let PerformOperations = (e)=>{
@@ -17,12 +18,16 @@ function TextForm(props) {
             NewText = NewText.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
         }
         setOutput(NewText);
+        setOutputBox(true);
+        props.showAlert("Text Converted Successfully", "success");
     }
 
     let ClearText = (e) => {
         e.preventDefault();
         setText("");
         setOutput("");
+        setOutputBox(false);
+        props.showAlert("Text Cleared Successfully", "success");
     }
 
     return (
@@ -71,11 +76,19 @@ function TextForm(props) {
                     </div>
                 </div>
             </form>
-
-            <h3>Your Output</h3>
-            <p>
-                {output}
-            </p>
+            
+            {
+                outputBox ? (
+                    <>
+                        <h3 className="float-left">Your Output</h3>
+                        <p>
+                            {output}
+                        </p>
+                    </>
+                ) : (
+                    ""
+                )
+            }
         </>
     )
 }
