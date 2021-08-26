@@ -34,7 +34,7 @@ function TextForm(props) {
         <>
             <form id="1">
                 <div className="mb-3">
-                    <label htmlFor="text" className="form-label">Enter Text</label>
+                    <label htmlFor="text" className="form-label"><h1>Try TextUtils - Word Counter, Character Counter</h1></label>
                     <textarea 
                         className="form-control" 
                         value={text} 
@@ -66,13 +66,13 @@ function TextForm(props) {
                     </div>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <div>
-                        <button className="btn btn-success my-3 mx-1" onClick={PerformOperations}>Convert</button>
-                        <button className="btn btn-danger my-3 mx-1" onClick={ClearText}>Clear Text</button>
+                    <div className=" my-3">
+                        <button disabled={text.length===0} className="btn btn-success mx-1" onClick={PerformOperations}>Convert</button>
+                        <button disabled={text.length===0} className="btn btn-danger mx-1" onClick={ClearText}>Clear Text</button>
                     </div>
 
                     <div className="d-flex">
-                        {text.split(" ").filter(x => x==="").length ? text.split(" ").length-1 : text.split(" ").length} Word and {text.length} Characters
+                        {text.split(/\s+/).filter(x => x==="").length ? text.split(/\s+/).length-1 : text.split(/\s+/).length} Word and {text.length} Characters
                     </div>
                 </div>
             </form>

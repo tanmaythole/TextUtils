@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from "react-router-dom"
 
@@ -21,9 +21,6 @@ function Navbar({title, toggle, btnText}) {
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/about">About</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">Contact</Link>
                     </li>
                     </ul>
                     <div className="form-check form-switch">
